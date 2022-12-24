@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @unit_type %>
+
+<div>
+  <%= link_to "Edit this unit type", edit_unit_type_path(@unit_type) %> |
+  <%= link_to "Back to unit types", unit_types_path %>
+
+  <%= button_to "Destroy this unit type", @unit_type, method: :delete %>
+</div>

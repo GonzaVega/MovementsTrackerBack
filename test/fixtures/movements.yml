@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  concept: 1
+  description: MyString
+  date: 2022-12-23 00:40:50
+  unit: one
+  user: one
+
+two:
+  amount: 1
+  concept: 1
+  description: MyString
+  date: 2022-12-23 00:40:50
+  unit: two
+  user: two

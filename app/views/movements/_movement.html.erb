@@ -1,0 +1,40 @@
+<div id="<%= dom_id movement %>">
+  <p>
+    <strong>Amount:</strong>
+    <%= movement.amount %>
+  </p>
+
+  <p>
+    <strong>Concept:</strong>
+   
+     <% if movement.concept == 1  %>
+    <%= 'income' %>
+    <%end%>
+     <% if movement.concept == 2  %>
+    <%= 'outcome' %>
+    <%end%>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+<%= movement.description %>
+   
+
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= movement.date.strftime("%d-%m-%Y %H:%M") %>
+  </p>
+
+  <p>
+    <strong>Unit:</strong>
+    <%= movement.unit_id %>
+  </p>
+
+  <p>
+    <strong>User:</strong>
+    <%= movement.user_id %>
+  </p>
+
+</div>
