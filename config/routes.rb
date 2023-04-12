@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  resources :movements
+  resources :movements do
+    collection do
+      get :balance
+      get :income_balance
+      get :expense_balance
+    end
+
+  end
   resources :users
   resources :units
   resources :unit_types

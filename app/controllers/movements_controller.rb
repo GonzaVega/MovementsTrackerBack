@@ -5,9 +5,39 @@ class MovementsController < ApplicationController
   def index
     @movements = Movement.all
   end
+# GET /movements/balance.json
+  def balance
+    balance = 0
+    Movement.all.each do |movement|
+      balance += movement.amount * (movement.concept == 1 ? 1 : -1)
+    end
+    render json: { balance: balance }
+  end
 
+  def income_balance
+    balance = 0
+    Movement.all.each do |movement|
+    if movement.concept == 1
+      balance += movement.amount
+    end
+  end
+    render json: { income_balance: balance }
+  end
+  def expense_balance
+    balance = 0
+    Movement.all.each do |movement|
+    if movement.concept == 2
+      balance += movement.amount
+    end
+  end
+    render json: { expense_balance: balance }
+  end
   # GET /movements/1 or /movements/1.json
   def show
+    @movement = Movement.find(params[:id])
+    respond_to do |format|
+      format.json { render json: @movement }
+    end
   end
 
   # GET /movements/new
@@ -59,9 +89,15 @@ class MovementsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+   
     def set_movement
       @movement = Movement.find(params[:id])
     end
+    # def set_movement
+    #   if action_name == "show" || action_name == "edit" || action_name == "update" || action_name == "destroy"
+    #     @movement = Movement.find(params[:id])
+    #   end
+    # end
 
     # Only allow a list of trusted parameters through.
     def movement_params

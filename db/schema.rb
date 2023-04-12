@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_034050) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_150720) do
   create_table "movements", force: :cascade do |t|
     t.integer "amount"
     t.integer "concept"
@@ -36,7 +36,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_034050) do
     t.integer "unit_type_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_private"
     t.index ["unit_type_id"], name: "index_units_on_unit_type_id"
+  end
+
+  create_table "units_users", id: false, force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "unit_id", null: false
   end
 
   create_table "users", force: :cascade do |t|
