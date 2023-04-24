@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_142500) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_20_150746) do
   create_table "movements", force: :cascade do |t|
     t.integer "amount"
     t.integer "concept"
@@ -56,6 +56,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_142500) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "provider", default: "email", null: false
+    t.string "uid", default: "", null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unit_id"], name: "index_users_on_unit_id"
