@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_20_150746) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_10_133742) do
   create_table "movements", force: :cascade do |t|
     t.integer "amount"
     t.integer "concept"
@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_150746) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "name"
-    t.integer "unit_id", null: false
+    t.integer "unit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password"
@@ -59,6 +59,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_150746) do
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.integer "sign_in_count", default: 0, null: false
+    t.datetime "confirmed_at"
+    t.string "confirmation_token"
+    t.datetime "confirmation_sent_at"
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token"
+    t.index ["confirmed_at"], name: "index_users_on_confirmed_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unit_id"], name: "index_users_on_unit_id"

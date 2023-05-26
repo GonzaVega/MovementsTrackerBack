@@ -1,9 +1,11 @@
+module Api
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users or /users.json
   def index
     @users = User.all
+    render json: @users
   end
 
   # GET /users/1 or /users/1.json
@@ -67,4 +69,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :name, :unit_id)
     end
+end
 end

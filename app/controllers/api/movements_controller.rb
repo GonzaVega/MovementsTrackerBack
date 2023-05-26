@@ -1,11 +1,23 @@
+module Api
 class MovementsController < ApplicationController
   before_action :set_movement, only: %i[ show edit update destroy ]
   movementType = ''
   # GET /movements or /movements.json
   def index
-    @movements = Movement.all
+   @movements = Movement.all.map do |movement|
+    movement.as_json.tap do |json|
+      json['concept'] = case movement.concept
+                        when 1
+                          'income'
+                        when 2
+                          'expense'
+                        end
+    end
   end
-# GET /movements/balance.json
+    render json: @movements
+  end
+
+  # GET /movements/balance.json
   def balance
     balance = 0
     Movement.all.each do |movement|
@@ -103,4 +115,5 @@ class MovementsController < ApplicationController
     def movement_params
       params.require(:movement).permit(:amount, :concept, :description, :date, :unit_id, :user_id)
     end
+end
 end
