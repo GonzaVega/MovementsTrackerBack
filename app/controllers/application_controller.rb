@@ -3,6 +3,6 @@ class ApplicationController < ActionController::Base
         include DeviseTokenAuth::Concerns::SetUserByToken
 
         def configured_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :unit_id, :password])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :unit_id, :password, :email])
         end
 end

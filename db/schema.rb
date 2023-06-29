@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_10_133742) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_22_205708) do
   create_table "movements", force: :cascade do |t|
     t.integer "amount"
     t.integer "concept"
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_10_133742) do
     t.datetime "confirmed_at"
     t.string "confirmation_token"
     t.datetime "confirmation_sent_at"
+    t.text "tokens"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token"
     t.index ["confirmed_at"], name: "index_users_on_confirmed_at"
     t.index ["email"], name: "index_users_on_email", unique: true

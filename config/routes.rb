@@ -20,8 +20,13 @@
 Rails.application.routes.draw do
   namespace :api do
     # Rutas de Devise Token Auth
-    mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+    mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks], controllers: {
+      registrations:  'api/devise_token_auth/registrations',
+      sessions: 'api/devise_token_auth/sessions'
+    }
 
+    delete 'auth', to: 'api/devise_token_auth/sessions#destroy'
+    
     # Rutas de recursos
     resources :users, only: [:index, :show, :update, :destroy]
     resources :movements do

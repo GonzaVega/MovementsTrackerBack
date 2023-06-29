@@ -11,6 +11,12 @@
 # end
 
 class Api::DeviseTokenAuth::RegistrationsController < DeviseTokenAuth::RegistrationsController
+  def create
+    super do |resource|
+      resource.unit_id = params[:unit_id]
+    end
+  end
+  
   private
 
   def sign_up_params
@@ -21,9 +27,4 @@ class Api::DeviseTokenAuth::RegistrationsController < DeviseTokenAuth::Registrat
     params.permit(:email, :name, :unit_id)
   end
 
-  def create
-    super do |resource|
-      resource.unit_id = params[:unit_id]
-    end
-  end
 end

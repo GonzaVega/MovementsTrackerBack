@@ -5,7 +5,7 @@ DeviseTokenAuth.setup do |config|
   # client is responsible for keeping track of the changing tokens. Change
   # this to false to prevent the Authorization header from changing after
   # each request.
-  # config.change_headers_on_each_request = true
+  config.change_headers_on_each_request = false
 
   # By default, users will need to re-authenticate after 2 weeks. This setting
   # determines how long tokens will remain valid after they are issued.
@@ -16,9 +16,9 @@ DeviseTokenAuth.setup do |config|
   # to 31. It is recommended to not use a value more than 10 in other environments.
   config.token_cost = Rails.env.test? ? 4 : 10
 
-  config.default_confirm_success_url = 'http://localhost:3000/Movements'
+  config.default_confirm_success_url = 'http://localhost:3000/successfulregistration'
 
-
+  # config.headers_names = {:'access-token' => 'access-token'}
   # Sets the max number of concurrent devices per user, which is 10 by default.
   # After this limit is reached, the oldest tokens will be removed.
   # config.max_number_of_devices = 10
@@ -45,11 +45,11 @@ DeviseTokenAuth.setup do |config|
   # config.default_callbacks = true
 
   # Makes it possible to change the headers names
-  # config.headers_names = {:'access-token' => 'access-token',
-  #                        :'client' => 'client',
-  #                        :'expiry' => 'expiry',
-  #                        :'uid' => 'uid',
-  #                        :'token-type' => 'token-type' }
+  # config.headers_names = {:'access-token' => 'access-token'},
+    #                      :'client' => 'client',
+    #                      :'expiry' => 'expiry',
+    #                      :'uid' => 'uid',
+    #                      :'token-type' => 'token-type' }
 
   # Makes it possible to use custom uid column
   # config.other_uid = "foo"
