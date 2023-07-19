@@ -5,6 +5,8 @@ class User < ApplicationRecord
  
 
   belongs_to :unit, optional: true
+
+  has_many :movements
   
   def unit_name
     unit.name 
