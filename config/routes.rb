@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     
     # Rutas de recursos
     resources :users, only: [:index, :show, :update, :destroy]
+    resources :units
     resources :movements do
       collection do
         get :balance
@@ -36,7 +37,6 @@ Rails.application.routes.draw do
         get :expense_balance
       end
     end
-    resources :units
     resources :unit_types
   end
 end
