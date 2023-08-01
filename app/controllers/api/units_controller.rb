@@ -1,7 +1,6 @@
 module Api
   class Api::UnitsController < ApplicationController
     protect_from_forgery with: :null_session
-    # skip_before_action :authenticate_api_user!
     before_action :set_unit, only: %i[ show edit update destroy ]
 
     # GET /units or /units.json
