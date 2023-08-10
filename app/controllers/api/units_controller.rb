@@ -25,15 +25,16 @@ module Api
     # POST /units or /units.json
     def create
       @unit = Unit.new(unit_params)
-
-      respond_to do |format|
+  
+      if current_api_user.present?
         if @unit.save
-          format.html { redirect_to unit_url(@unit), notice: "Unit was successfully created." }
-          format.json { render :show, status: :created, location: @unit }
+          render json: @unit, status: :created
+          # , location: @unit
         else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @unit.errors, status: :unprocessable_entity }
+          render json: @unit.errors, status: :unprocessable_entity
         end
+      else
+        render json: { error: "Not authenticated" }, status: :unauthorized
       end
     end
 
