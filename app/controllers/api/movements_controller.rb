@@ -7,7 +7,7 @@ module Api
     def index
       
       if current_api_user.present?
-        @movements = current_api_user.movements.map do |movement|
+        @movements = current_api_user.movements.includes(:unit).map do |movement|
           movement.as_json.tap do |json|
             json['concept'] = case movement.concept
                               when 1
@@ -15,6 +15,7 @@ module Api
                               when 2
                                 'expense'
                               end
+            json['unit_name'] = movement.unit.name if movement.unit.present?                 
           end
         end
   
