@@ -15,7 +15,8 @@ module Api
                               when 2
                                 'expense'
                               end
-            json['unit_name'] = movement.unit.name if movement.unit.present?                 
+            json['unit_name'] = movement.unit.name if movement.unit.present? 
+            json['user_name'] = movement.user.name if movement.user.present?          
           end
         end
   
