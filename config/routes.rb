@@ -29,7 +29,11 @@ Rails.application.routes.draw do
     
     # Rutas de recursos
     resources :users, only: [:index, :show, :update, :destroy]
-    resources :units
+    resources :units do
+      collection do
+        get 'user_units'    
+      end
+    end
     resources :movements do
       collection do
         get :balance

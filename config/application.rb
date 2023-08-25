@@ -16,7 +16,7 @@ module MovementsTrackerBack
         origins 'http://localhost:3000'
         resource '*', headers: :any, methods: [:get, :post, :options, :delete, :put, :patch],
         credentials: true,
-        expose: ['access-token', 'client', 'uid']
+        expose: ['access-token', 'client', 'uid', 'name']
       end
     end
     

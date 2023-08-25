@@ -61,6 +61,28 @@ module Api
       end
     end
 
+    #user_units method
+
+    # def user_units
+    #   if current_api_user.present?
+    #     # @user_units = current_api_user.units.includes(:users, :unit_type)
+    #     @user_units = [current_api_user.unit]
+    #     render json: @user_units, include: [:users, :unit_type, :movements]
+    #   else
+    #     render json: { error: "Not authenticated" }, status: :unauthorized
+    #   end
+    # end
+    def user_units
+      if current_api_user.present?
+        @user_units = [current_api_user.unit]
+        movements_with_users = Movement.where(unit_id: @user_units.first.id).includes(:user)
+        render json: @user_units, include: { users: { only: :name }, unit_type: {}, movements: { include: { user: { only: :name } } } }
+      else
+        render json: { error: "Not authenticated" }, status: :unauthorized
+      end
+    end
+    
+    
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_unit
